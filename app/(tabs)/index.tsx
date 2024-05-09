@@ -1,10 +1,14 @@
 import { StyleSheet } from "react-native";
 import { Text, View } from "@/components/Themed";
+import SearchBar from "@/components/SearchBar";
 
 export default function Home() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
+      <SearchBar />
+      <View style={styles.container}>
+        <Text>Add Recipe Card Preview</Text>
+      </View>
     </View>
   );
 }
@@ -12,11 +16,10 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    padding: 16,
+    backgroundColor: "#fff",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
+  searchResults: {
+    flex: 1,
   },
 });

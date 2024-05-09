@@ -1,5 +1,6 @@
 import React from "react";
 import { FontAwesome6 } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 
 import Colors from "@/constants/Colors";
@@ -11,7 +12,7 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome6>["name"];
   color: string;
 }) {
-  return <FontAwesome6 size={28} style={{ marginBottom: -3 }} {...props} />;
+  return <FontAwesome6 size={24} style={{ marginBottom: -3 }} {...props} />;
 }
 
 export default function TabLayout() {
@@ -53,7 +54,9 @@ export default function TabLayout() {
         name="favorites"
         options={{
           title: "Favorites",
-          tabBarIcon: ({ color }) => <TabBarIcon name="star" color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="star" size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
