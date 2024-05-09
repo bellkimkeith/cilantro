@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
-import { Text, View } from "@/components/Themed";
-import SearchBar from "@/components/SearchBar";
+import { Text, View } from "@/src/components/Themed";
+import SearchBar from "@/src/components/SearchBar";
 
 export default function Home() {
   return (
