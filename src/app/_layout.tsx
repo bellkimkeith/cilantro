@@ -11,6 +11,7 @@ import { useEffect } from "react";
 
 import { useColorScheme } from "@/src/components/useColorScheme";
 import QueryProvider from "@/src/providers/QueryProvider";
+import SearchFilterContextProvider from "../providers/SearchFilterContextProvider";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -55,16 +56,18 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <QueryProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="filter"
-            options={{
-              presentation: "modal",
-              title: "Filter",
-            }}
-          />
-        </Stack>
+        <SearchFilterContextProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="filter"
+              options={{
+                presentation: "modal",
+                title: "Filter",
+              }}
+            />
+          </Stack>
+        </SearchFilterContextProvider>
       </QueryProvider>
     </ThemeProvider>
   );

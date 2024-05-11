@@ -16,6 +16,7 @@ const RecipeList = () => {
       renderItem={({ item }) => <RecipeListItem item={item} />}
       contentContainerStyle={{ gap: 12, paddingHorizontal: 5 }}
       showsVerticalScrollIndicator={false}
+      initialNumToRender={10}
     />
   );
 };

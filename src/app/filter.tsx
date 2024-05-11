@@ -1,11 +1,4 @@
-import {
-  Button,
-  Pressable,
-  SectionList,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Pressable, SectionList, StyleSheet, Text, View } from "react-native";
 import React, { useMemo, useState } from "react";
 import { RadioButtonProps, RadioGroup } from "react-native-radio-buttons-group";
 import Filters from "../constants/Filters";
