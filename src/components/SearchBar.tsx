@@ -1,18 +1,34 @@
 import { StyleSheet, TextInput, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesome6 } from "@expo/vector-icons";
 
-const SearchBar = () => {
+type SearchBarProps = {
+  handleSubmit: (text: string) => void;
+};
+
+const SearchBar = ({ handleSubmit }: SearchBarProps) => {
+  const [searchText, setSearchText] = useState("");
+
   return (
     <View style={styles.container}>
       <View style={styles.search}>
         <TextInput
           placeholder="Search"
           onSubmitEditing={(e) => {
-            console.log(e.nativeEvent.text);
+            handleSubmit(e.nativeEvent.text);
+          }}
+          autoCorrect={false}
+          autoCapitalize="none"
+          onChangeText={setSearchText}
+        />
+        <FontAwesome6
+          name="magnifying-glass"
+          size={24}
+          color="gray"
+          onPress={() => {
+            handleSubmit(searchText);
           }}
         />
-        <FontAwesome6 name="magnifying-glass" size={24} color="gray" />
       </View>
       <View>
         <FontAwesome6
@@ -36,6 +52,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
+    paddingHorizontal: 5,
   },
   search: {
     flex: 1,

@@ -1,13 +1,20 @@
-import { StyleSheet } from "react-native";
-import { Text, View } from "@/src/components/Themed";
+import { ActivityIndicator, StyleSheet } from "react-native";
+import { View } from "@/src/components/Themed";
 import SearchBar from "@/src/components/SearchBar";
+import RecipesList from "@/src/components/RecipeList";
+import { useRecipesByKeyword } from "@/src/api/recipes";
 
 export default function Home() {
+  const { mutate: searchRecipe, isPending } = useRecipesByKeyword();
+  const handleSubmit = (text: string) => {
+    searchRecipe(text);
+  };
+
   return (
     <View style={styles.container}>
-      <SearchBar />
-      <View style={styles.container}>
-        <Text>Add Recipe Card Preview</Text>
+      <SearchBar handleSubmit={handleSubmit} />
+      <View style={styles.searchResults}>
+        {isPending ? <ActivityIndicator /> : <RecipesList />}
       </View>
     </View>
   );

@@ -10,7 +10,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
 import { useColorScheme } from "@/src/components/useColorScheme";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import QueryProvider from "@/src/providers/QueryProvider";
 
 export {
