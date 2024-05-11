@@ -60,8 +60,8 @@ function RootLayoutNav() {
           <Stack.Screen
             name="filter"
             options={{
-              presentation: "fullScreenModal",
-              headerBackVisible: false,
+              presentation: "modal",
+              title: "Filter",
             }}
           />
         </Stack>

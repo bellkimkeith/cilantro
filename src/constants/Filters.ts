@@ -1,0 +1,122 @@
+export default {
+  cuisineType: [
+    {
+      id: "1",
+      label: "American",
+      value: "american",
+    },
+    {
+      id: "2",
+      label: "American",
+      value: "american",
+    },
+    {
+      id: "3",
+      label: "Asian",
+      value: "asian",
+    },
+    {
+      id: "4",
+      label: "British",
+      value: "british",
+    },
+    {
+      id: "5",
+      label: "Caribbean",
+      value: "caribbean",
+    },
+    {
+      id: "6",
+      label: "Central Europe",
+      value: "central%20europe",
+    },
+    {
+      id: "7",
+      label: "Chinese",
+      value: "chinese",
+    },
+    {
+      id: "8",
+      label: "Eastern Europe",
+      value: "eastern%20europe",
+    },
+    {
+      id: "9",
+      label: "French",
+      value: "french",
+    },
+    {
+      id: "10",
+      label: "Greek",
+      value: "greek",
+    },
+    {
+      id: "11",
+      label: "Indian",
+      value: "indian",
+    },
+    {
+      id: "12",
+      label: "Italian",
+      value: "italian",
+    },
+    {
+      id: "13",
+      label: "Japanese",
+      value: "japanese",
+    },
+    {
+      id: "14",
+      label: "Korean",
+      value: "korean",
+    },
+    {
+      id: "15",
+      label: "Kosher",
+      value: "kosher",
+    },
+    {
+      id: "16",
+      label: "Mediterranean",
+      value: "mediterranean",
+    },
+    {
+      id: "17",
+      label: "Mexican",
+      value: "mexican",
+    },
+    {
+      id: "18",
+      label: "Middle Eastern",
+      value: "middle%20eastern",
+    },
+    {
+      id: "19",
+      label: "Nordic",
+      value: "nordic",
+    },
+    {
+      id: "20",
+      label: "South American",
+      value: "south%20american",
+    },
+    {
+      id: "21",
+      label: "South East Asian",
+      value: "south%20east%20asian",
+    },
+    {
+      id: "22",
+      label: "World",
+      value: "world",
+    },
+  ],
+  diet: [
+    "balanced",
+    "high-fiber",
+    "high-protein",
+    "low-carb",
+    "low-fat",
+    "low-sodium",
+  ],
+};

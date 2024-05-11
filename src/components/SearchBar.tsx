@@ -1,20 +1,13 @@
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  useColorScheme,
-} from "react-native";
+import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import { FontAwesome6 } from "@expo/vector-icons";
-import Colors from "../constants/Colors";
+import { Link } from "expo-router";
 
 type SearchBarProps = {
   handleSubmit: (text: string) => void;
 };
 
 const SearchBar = ({ handleSubmit }: SearchBarProps) => {
-  const colorScheme = useColorScheme();
   const [searchText, setSearchText] = useState("");
 
   return (
@@ -40,15 +33,16 @@ const SearchBar = ({ handleSubmit }: SearchBarProps) => {
         />
       </View>
       <View>
-        <FontAwesome6
-          name="filter"
-          size={24}
-          color="gray"
-          onPress={() => {
-            console.log("show filter options");
-          }}
-          suppressHighlighting={true}
-        />
+        <Link href="/filter" asChild>
+          <Pressable>
+            <FontAwesome6
+              name="filter"
+              size={24}
+              color="gray"
+              suppressHighlighting={true}
+            />
+          </Pressable>
+        </Link>
       </View>
     </View>
   );

@@ -7,7 +7,10 @@ import { useRecipesByKeyword } from "@/src/api/recipes";
 export default function Home() {
   const { mutate: searchRecipe, isPending } = useRecipesByKeyword();
   const handleSubmit = (text: string) => {
-    if (text) searchRecipe(text);
+    if (text) {
+      const formattedText = text.replace(/[^a-zA-Z0-9]+/g, " ").trim();
+      searchRecipe(text);
+    }
   };
 
   return (
