@@ -8,8 +8,8 @@ export default function Home() {
   const { mutate: searchRecipe, isPending } = useRecipesByKeyword();
   const handleSubmit = (text: string) => {
     if (text) {
-      const formattedText = text.replace(/[^a-zA-Z0-9]+/g, " ").trim();
-      searchRecipe(text);
+      const formattedText = text.replace(/[^a-zA-Z]+/g, " ").trim();
+      searchRecipe(formattedText);
     }
   };
 
