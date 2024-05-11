@@ -12,6 +12,15 @@ const SearchBar = ({ handleSubmit }: SearchBarProps) => {
 
   return (
     <View style={styles.container}>
+      <FontAwesome6
+        name="magnifying-glass"
+        size={24}
+        color="grey"
+        onPress={() => {
+          handleSubmit(searchText);
+        }}
+        suppressHighlighting={true}
+      />
       <View style={styles.search}>
         <TextInput
           placeholder="Search"
@@ -21,15 +30,7 @@ const SearchBar = ({ handleSubmit }: SearchBarProps) => {
           autoCorrect={false}
           autoCapitalize="none"
           onChangeText={setSearchText}
-        />
-        <FontAwesome6
-          name="magnifying-glass"
-          size={24}
-          color="grey"
-          onPress={() => {
-            handleSubmit(searchText);
-          }}
-          suppressHighlighting={true}
+          clearButtonMode="always"
         />
       </View>
       <View>
@@ -56,14 +57,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
-    paddingHorizontal: 5,
+    backgroundColor: "#eee",
+    borderRadius: 20,
+    padding: 12,
   },
   search: {
     flex: 1,
-    borderRadius: 20,
-    padding: 12,
-    backgroundColor: "#eee",
-    flexDirection: "row",
-    justifyContent: "space-between",
   },
 });

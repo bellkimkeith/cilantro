@@ -112,11 +112,35 @@ export default {
     },
   ],
   diet: [
-    "balanced",
-    "high-fiber",
-    "high-protein",
-    "low-carb",
-    "low-fat",
-    "low-sodium",
+    {
+      id: "1",
+      label: "Balanced",
+      value: "balanced",
+    },
+    {
+      id: "2",
+      label: "High-Fiber",
+      value: "high-fiber",
+    },
+    {
+      id: "3",
+      label: "High-Protein",
+      value: "high-protein",
+    },
+    {
+      id: "4",
+      label: "Low-Carb",
+      value: "low-carb",
+    },
+    {
+      id: "5",
+      label: "Low-Fat",
+      value: "low-fat",
+    },
+    {
+      id: "6",
+      label: "Low-Sodium",
+      value: "low-sodium",
+    },
   ],
 };
