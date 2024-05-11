@@ -7,7 +7,7 @@ import { useRecipesByKeyword } from "@/src/api/recipes";
 export default function Home() {
   const { mutate: searchRecipe, isPending } = useRecipesByKeyword();
   const handleSubmit = (text: string) => {
-    searchRecipe(text);
+    if (text) searchRecipe(text);
   };
 
   return (

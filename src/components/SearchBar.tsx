@@ -1,12 +1,20 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  useColorScheme,
+} from "react-native";
 import React, { useState } from "react";
 import { FontAwesome6 } from "@expo/vector-icons";
+import Colors from "../constants/Colors";
 
 type SearchBarProps = {
   handleSubmit: (text: string) => void;
 };
 
 const SearchBar = ({ handleSubmit }: SearchBarProps) => {
+  const colorScheme = useColorScheme();
   const [searchText, setSearchText] = useState("");
 
   return (
@@ -24,10 +32,11 @@ const SearchBar = ({ handleSubmit }: SearchBarProps) => {
         <FontAwesome6
           name="magnifying-glass"
           size={24}
-          color="gray"
+          color="grey"
           onPress={() => {
             handleSubmit(searchText);
           }}
+          suppressHighlighting={true}
         />
       </View>
       <View>
@@ -38,6 +47,7 @@ const SearchBar = ({ handleSubmit }: SearchBarProps) => {
           onPress={() => {
             console.log("show filter options");
           }}
+          suppressHighlighting={true}
         />
       </View>
     </View>

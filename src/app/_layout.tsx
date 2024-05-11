@@ -57,6 +57,13 @@ function RootLayoutNav() {
       <QueryProvider>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="filter"
+            options={{
+              presentation: "fullScreenModal",
+              headerBackVisible: false,
+            }}
+          />
         </Stack>
       </QueryProvider>
     </ThemeProvider>
