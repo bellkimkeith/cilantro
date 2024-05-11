@@ -14,7 +14,8 @@ export default function Home() {
     <View style={styles.container}>
       <SearchBar handleSubmit={handleSubmit} />
       <View style={styles.searchResults}>
-        {isPending ? <ActivityIndicator /> : <RecipesList />}
+        {isPending && <ActivityIndicator />}
+        <RecipesList />
       </View>
     </View>
   );
@@ -28,5 +29,6 @@ const styles = StyleSheet.create({
   },
   searchResults: {
     flex: 1,
+    gap: 5,
   },
 });

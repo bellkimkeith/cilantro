@@ -1,6 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Edamam } from "../edamam";
 
+// api parameter reference
+// q=chicken&diet=high-protein&cuisineType=Kosher&time=30
+
 // for get requests
 export const useInitialRecipes = () => {
   return useQuery({
@@ -26,7 +29,9 @@ export const useRecipesByKeyword = () => {
   return useMutation({
     mutationFn: async (payload: string) => {
       try {
-        const response = await fetch(`${Edamam.baseUrl}&q=${payload}`);
+        const response = await fetch(
+          `${Edamam.baseUrl}&q=${payload}&random=true`
+        );
         const json = await response.json();
         return json;
       } catch (error) {
@@ -34,8 +39,8 @@ export const useRecipesByKeyword = () => {
         throw error;
       }
     },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["recipes"] });
+    onSuccess: async (data) => {
+      queryClient.setQueryData(["recipes"], data);
     },
   });
 };
