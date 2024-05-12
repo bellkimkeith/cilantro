@@ -1,7 +1,17 @@
-import { Pressable, SectionList, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Pressable,
+  SectionList,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React, { useMemo, useState } from "react";
 import { RadioButtonProps, RadioGroup } from "react-native-radio-buttons-group";
 import Filters from "../constants/Filters";
+import { useRecipesByKeywordWithFilter } from "../api/recipes";
+import { useParams } from "../providers/SearchFilterContextProvider";
+import { router } from "expo-router";
 
 const Filter = () => {
   const [selectedDiet, setSelectedDiet] = useState<string | undefined>();
@@ -18,7 +28,6 @@ const Filter = () => {
         <RadioGroup
           radioButtons={dietTypes}
           onPress={(e) => {
-            console.log(dietTypes[Number(e) - 1]);
             setSelectedDiet(e);
           }}
           selectedId={selectedDiet}
@@ -33,7 +42,6 @@ const Filter = () => {
         <RadioGroup
           radioButtons={cuisineTypes}
           onPress={(e) => {
-            console.log(dietTypes[Number(e) - 1]);
             setSelectedCuisine(e);
           }}
           selectedId={selectedCuisine}
@@ -43,6 +51,10 @@ const Filter = () => {
       data: ["placeholder"],
     },
   ];
+
+  const { mutateAsync: searchWithFilter, isPending } =
+    useRecipesByKeywordWithFilter();
+  const { parameters } = useParams();
 
   return (
     <View style={styles.container}>
@@ -56,10 +68,24 @@ const Filter = () => {
         )}
         contentContainerStyle={{ paddingHorizontal: 10 }}
       />
-      <Pressable style={styles.button}>
+      <Pressable
+        disabled={!selectedDiet && !selectedCuisine}
+        style={styles.button}
+        onPress={async () => {
+          await searchWithFilter({
+            ...parameters,
+            dietFilter:
+              selectedDiet && dietTypes[Number(selectedDiet) - 1].value,
+            cuisineFilter:
+              selectedCuisine &&
+              cuisineTypes[Number(selectedCuisine) - 1].value,
+          });
+          router.back();
+        }}
+      >
         {({ pressed }) => (
           <Text style={[styles.buttonText, { opacity: pressed ? 0.5 : 1 }]}>
-            Apply
+            {isPending ? <ActivityIndicator /> : "Apply"}
           </Text>
         )}
       </Pressable>

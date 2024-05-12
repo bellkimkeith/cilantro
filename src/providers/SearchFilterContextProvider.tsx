@@ -1,23 +1,17 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
-
-type SearchParameters = {
-  searchText: string | null;
-  dietFilter: string | null;
-  cuisineFilter: string | null;
-  timeFilter: number | null;
-};
+import { SearchParameters } from "../utils/Types";
 
 type SearchFilterData = {
-  parameters: SearchParameters | null;
+  parameters: SearchParameters;
   updateParameters: (newParams: SearchParameters) => void;
 };
 
 const SearchFilterContext = createContext<SearchFilterData>({
   parameters: {
-    searchText: null,
-    dietFilter: null,
-    cuisineFilter: null,
-    timeFilter: null,
+    searchText: "",
+    dietFilter: "",
+    cuisineFilter: "",
+    timeFilter: 0,
   },
   updateParameters: () => {},
 });
@@ -25,7 +19,12 @@ const SearchFilterContext = createContext<SearchFilterData>({
 export default function SearchFilterContextProvider({
   children,
 }: PropsWithChildren) {
-  const [parameters, setParameters] = useState<SearchParameters | null>(null);
+  const [parameters, setParameters] = useState<SearchParameters>({
+    searchText: "",
+    dietFilter: "",
+    cuisineFilter: "",
+    timeFilter: 0,
+  });
 
   const updateParameters = (newParams: SearchParameters) => {
     setParameters(newParams);
@@ -38,4 +37,4 @@ export default function SearchFilterContextProvider({
   );
 }
 
-export const useAuth = () => useContext(SearchFilterContext);
+export const useParams = () => useContext(SearchFilterContext);
