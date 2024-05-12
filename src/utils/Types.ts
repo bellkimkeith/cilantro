@@ -5,12 +5,26 @@ export type SearchParameters = {
   timeFilter: string | undefined;
 };
 
+export interface Nutrient {
+  label: string;
+  quantity: number;
+  unit: string;
+}
+
+export interface TotalNutrients {
+  ENERC_KCAL: Nutrient;
+  FAT: Nutrient;
+  FIBTG: Nutrient;
+  PROCNT: Nutrient;
+}
+
 export type Hits = {
   recipe: {
     label: string;
     image: string;
     source: string;
     calories: number;
+    totalNutrients: TotalNutrients;
   };
   _links: {
     self: {
