@@ -6,6 +6,8 @@ import { Tabs } from "expo-router";
 import Colors from "@/src/constants/Colors";
 import { useColorScheme } from "@/src/components/useColorScheme";
 import { useClientOnlyValue } from "@/src/components/useClientOnlyValue";
+import { Badge } from "@rneui/base";
+import { useFavorites } from "@/src/providers/FavoritesContextProvider";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -17,6 +19,7 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const favorites = useFavorites().favorites;
 
   return (
     <Tabs
@@ -43,7 +46,19 @@ export default function TabLayout() {
         options={{
           title: "Favorites",
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="star" size={size} color={color} />
+            <>
+              <FontAwesome name="star" size={size} color={color} />
+              <Badge
+                value={favorites.length}
+                status="error"
+                containerStyle={{
+                  position: "absolute",
+                  top: 2,
+                  right: 42,
+                  display: favorites.length > 0 ? "flex" : "none",
+                }}
+              />
+            </>
           ),
         }}
       />
