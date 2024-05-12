@@ -21,6 +21,7 @@ const Filter = () => {
     () => Filters.cuisineType,
     []
   );
+  const timeRange: RadioButtonProps[] = useMemo(() => Filters.time, []);
   const dietTypes: RadioButtonProps[] = useMemo(() => Filters.diet, []);
   const [selectedDiet, setSelectedDiet] = useState<string | undefined>(
     parameters.dietFilter &&
@@ -35,6 +36,13 @@ const Filter = () => {
         Filters.cuisineType.findIndex(
           (cuisine) => cuisine.value === parameters.cuisineFilter
         ) + 1
+      ).toString()
+  );
+  const [selectedTime, setSelectedTime] = useState<string | undefined>(
+    parameters.timeFilter &&
+      (
+        Filters.time.findIndex((time) => time.value === parameters.timeFilter) +
+        1
       ).toString()
   );
   const SECTIONS = [
@@ -66,6 +74,20 @@ const Filter = () => {
       ),
       data: ["placeholder"],
     },
+    {
+      title: "Cooking Time (minutes)",
+      renderItem: () => (
+        <RadioGroup
+          radioButtons={timeRange}
+          onPress={(e) => {
+            setSelectedTime(e);
+          }}
+          selectedId={selectedTime}
+          containerStyle={{ alignItems: "flex-start", paddingBottom: 12 }}
+        />
+      ),
+      data: ["placeholder"],
+    },
   ];
 
   return (
@@ -91,6 +113,8 @@ const Filter = () => {
             cuisineFilter:
               selectedCuisine &&
               cuisineTypes[Number(selectedCuisine) - 1].value,
+            timeFilter:
+              selectedTime && timeRange[Number(selectedTime) - 1].value,
           });
           await searchWithFilter({
             ...parameters,
@@ -99,6 +123,8 @@ const Filter = () => {
             cuisineFilter:
               selectedCuisine &&
               cuisineTypes[Number(selectedCuisine) - 1].value,
+            timeFilter:
+              selectedTime && timeRange[Number(selectedTime) - 1].value,
           });
           router.back();
         }}

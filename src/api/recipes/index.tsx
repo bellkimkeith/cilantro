@@ -57,7 +57,11 @@ export const useRecipesByKeywordWithFilter = () => {
       const time = payload.timeFilter && `&time=${payload.timeFilter}`;
       const parameters = `${searchText !== undefined ? searchText : ""}${
         diet !== undefined ? diet : ""
-      }${cuisine !== undefined ? cuisine : ""}${time === 0 ? "" : time}`;
+      }${cuisine !== undefined ? cuisine : ""}${
+        time !== undefined ? time : ""
+      }`;
+
+      console.log(parameters);
 
       try {
         const response = await fetch(

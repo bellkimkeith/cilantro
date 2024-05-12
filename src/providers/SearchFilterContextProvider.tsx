@@ -11,7 +11,7 @@ const SearchFilterContext = createContext<SearchFilterData>({
     searchText: "",
     dietFilter: "",
     cuisineFilter: "",
-    timeFilter: 0,
+    timeFilter: "",
   },
   updateParameters: () => {},
 });
@@ -23,7 +23,7 @@ export default function SearchFilterContextProvider({
     searchText: "",
     dietFilter: "",
     cuisineFilter: "",
-    timeFilter: 0,
+    timeFilter: "",
   });
 
   const updateParameters = (newParams: SearchParameters) => {

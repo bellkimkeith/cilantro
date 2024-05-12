@@ -143,4 +143,26 @@ export default {
       value: "low-sodium",
     },
   ],
+  time: [
+    {
+      id: "1",
+      label: "0-30",
+      value: "0-30",
+    },
+    {
+      id: "2",
+      label: "30-60",
+      value: "30-60",
+    },
+    {
+      id: "3",
+      label: "60-90",
+      value: "60-90",
+    },
+    {
+      id: "4",
+      label: "90-120",
+      value: "90-120",
+    },
+  ],
 };
