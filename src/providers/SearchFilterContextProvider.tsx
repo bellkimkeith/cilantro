@@ -34,9 +34,7 @@ export default function SearchFilterContextProvider({
     timeFilter: "",
   });
   const filtersCount = useMemo(() => {
-    let count = Object.values(parameters).filter((item) => item).length;
-    console.log(count);
-
+    let count = Object.values(parameters).filter((item) => item !== "").length;
     return count;
   }, [parameters]);
 

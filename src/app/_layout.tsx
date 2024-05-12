@@ -11,7 +11,10 @@ import { useEffect } from "react";
 
 import { useColorScheme } from "@/src/components/useColorScheme";
 import QueryProvider from "@/src/providers/QueryProvider";
-import SearchFilterContextProvider from "../providers/SearchFilterContextProvider";
+import SearchFilterContextProvider, {
+  useParams,
+} from "../providers/SearchFilterContextProvider";
+import { Pressable, Text } from "react-native";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -64,6 +67,16 @@ function RootLayoutNav() {
               options={{
                 presentation: "modal",
                 title: "Filter",
+                // headerRight: () => (
+                //   <Pressable
+                //     onPress={() => {
+                //       console.log("clear");
+                //     }}
+                //     // disabled={filtersCount <= 0}
+                //   >
+                //     <Text>Clear</Text>
+                //   </Pressable>
+                // ),
               }}
             />
           </Stack>
