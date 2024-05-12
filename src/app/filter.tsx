@@ -11,12 +11,12 @@ import { RadioButtonProps, RadioGroup } from "react-native-radio-buttons-group";
 import Filters from "../constants/Filters";
 import { useRecipesByKeywordWithFilter } from "../api/recipes";
 import { useParams } from "../providers/SearchFilterContextProvider";
-import { router } from "expo-router";
+import { Stack, router } from "expo-router";
 
 const Filter = () => {
   const { mutateAsync: searchWithFilter, isPending } =
     useRecipesByKeywordWithFilter();
-  const { parameters, updateParameters } = useParams();
+  const { parameters, updateParameters, filtersCount } = useParams();
   const cuisineTypes: RadioButtonProps[] = useMemo(
     () => Filters.cuisineType,
     []
@@ -92,6 +92,41 @@ const Filter = () => {
 
   return (
     <View style={styles.container}>
+      <Stack.Screen
+        options={{
+          headerRight: () => (
+            <Pressable
+              disabled={!selectedDiet && !selectedCuisine && !selectedTime}
+              onPress={() => {
+                updateParameters({
+                  ...parameters,
+                  dietFilter: "",
+                  cuisineFilter: "",
+                  timeFilter: "",
+                });
+                setSelectedCuisine(undefined);
+                setSelectedDiet(undefined);
+                setSelectedTime(undefined);
+                console.log("clear");
+              }}
+            >
+              {({ pressed }) => (
+                <Text
+                  style={{
+                    opacity:
+                      pressed ||
+                      (!selectedDiet && !selectedCuisine && !selectedTime)
+                        ? 0.5
+                        : 1,
+                  }}
+                >
+                  Clear
+                </Text>
+              )}
+            </Pressable>
+          ),
+        }}
+      />
       <SectionList
         showsVerticalScrollIndicator={false}
         sections={SECTIONS}
@@ -103,7 +138,7 @@ const Filter = () => {
         contentContainerStyle={{ paddingHorizontal: 10, paddingVertical: 5 }}
       />
       <Pressable
-        disabled={!selectedDiet && !selectedCuisine}
+        disabled={!selectedDiet && !selectedCuisine && !selectedTime}
         style={styles.button}
         onPress={async () => {
           updateParameters({
@@ -130,7 +165,18 @@ const Filter = () => {
         }}
       >
         {({ pressed }) => (
-          <Text style={[styles.buttonText, { opacity: pressed ? 0.5 : 1 }]}>
+          <Text
+            style={[
+              styles.buttonText,
+              {
+                opacity:
+                  pressed ||
+                  (!selectedDiet && !selectedCuisine && !selectedTime)
+                    ? 0.5
+                    : 1,
+              },
+            ]}
+          >
             {isPending ? <ActivityIndicator /> : "Apply"}
           </Text>
         )}

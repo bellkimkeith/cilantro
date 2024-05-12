@@ -67,16 +67,6 @@ function RootLayoutNav() {
               options={{
                 presentation: "modal",
                 title: "Filter",
-                // headerRight: () => (
-                //   <Pressable
-                //     onPress={() => {
-                //       console.log("clear");
-                //     }}
-                //     // disabled={filtersCount <= 0}
-                //   >
-                //     <Text>Clear</Text>
-                //   </Pressable>
-                // ),
               }}
             />
           </Stack>
