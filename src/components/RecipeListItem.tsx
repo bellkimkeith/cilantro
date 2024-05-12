@@ -2,26 +2,9 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { memo } from "react";
 import { Link } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
-
-type RecipeListItemProp = {
-  item: {
-    recipe: {
-      label: string;
-      image: string;
-      source: string;
-      calories: number;
-    };
-    _links: {
-      self: {
-        title: string;
-        href: string;
-      };
-    };
-  };
-};
+import { RecipeListItemProp } from "../utils/Types";
 
 const RecipeListItem = memo(({ item }: RecipeListItemProp) => {
-  // const segments = useSegments<["(tabs)", "main", "[label]"]>();
   const formattedText = item.recipe.label.replace(/[^a-zA-Z]+/g, " ").trim();
 
   return (

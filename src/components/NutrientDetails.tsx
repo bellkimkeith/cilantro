@@ -1,16 +1,36 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Hits } from "../utils/Types";
+import { useFavorites } from "../providers/FavoritesContextProvider";
 
-const NutrientDetails = ({ recipe }: Hits) => {
+const NutrientDetails = ({ recipe, _links }: Hits) => {
+  const { favorites, addItem, removeItem } = useFavorites();
+  const isFavorite = favorites.find(
+    (item) => item.recipe.label === recipe.label
+  );
   return (
     <View style={styles.detailsContainer}>
       <View style={styles.overViewDetailsContainer}>
-        <Text style={styles.headerText}>{recipe.label}</Text>
-        <Text style={styles.subText}>{recipe.source}</Text>
+        <View style={styles.overViewTextContainer}>
+          <Text style={styles.headerText}>{recipe.label}</Text>
+          <Text style={styles.subText}>{recipe.source}</Text>
+        </View>
+        <FontAwesome
+          name={isFavorite ? "star" : "star-o"}
+          size={28}
+          color="black"
+          onPress={() => {
+            if (isFavorite) {
+              removeItem(recipe.label);
+            } else {
+              addItem({ recipe, _links });
+            }
+          }}
+          suppressHighlighting={true}
+        />
       </View>
       <View style={styles.nutrientsContainer}>
         <View style={styles.nutrientsSubContainer}>
@@ -83,6 +103,11 @@ const styles = StyleSheet.create({
     color: "#777",
   },
   overViewDetailsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  overViewTextContainer: {
+    flex: 1,
     gap: 5,
   },
   nutrientsContainer: {

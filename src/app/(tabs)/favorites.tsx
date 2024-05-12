@@ -1,10 +1,27 @@
-import { StyleSheet } from "react-native";
-import { Text, View } from "@/src/components/Themed";
+import { FlatList, StyleSheet, Text } from "react-native";
+import { View } from "@/src/components/Themed";
+import { useFavorites } from "@/src/providers/FavoritesContextProvider";
+import RecipeListItem from "@/src/components/RecipeListItem";
 
 export default function Favorites() {
+  const favorites = useFavorites().favorites;
+
+  if (!favorites.length)
+    return (
+      <View style={styles.emptyView}>
+        <Text>No Favorites</Text>
+      </View>
+    );
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Favorites</Text>
+      <FlatList
+        data={favorites}
+        keyExtractor={(item) => item.recipe.label}
+        renderItem={({ item }) => <RecipeListItem item={item} />}
+        contentContainerStyle={{ gap: 12, paddingHorizontal: 5 }}
+        showsVerticalScrollIndicator={false}
+        initialNumToRender={10}
+      />
     </View>
   );
 }
@@ -12,11 +29,12 @@ export default function Favorites() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    padding: 16,
+    backgroundColor: "#fff",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
+  emptyView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

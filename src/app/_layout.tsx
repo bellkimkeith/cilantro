@@ -15,6 +15,7 @@ import SearchFilterContextProvider, {
   useParams,
 } from "../providers/SearchFilterContextProvider";
 import { Pressable, Text } from "react-native";
+import FavoritesContextProvider from "../providers/FavoritesContextProvider";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -60,16 +61,18 @@ function RootLayoutNav() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <QueryProvider>
         <SearchFilterContextProvider>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen
-              name="filter"
-              options={{
-                presentation: "modal",
-                title: "Filter",
-              }}
-            />
-          </Stack>
+          <FavoritesContextProvider>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen
+                name="filter"
+                options={{
+                  presentation: "modal",
+                  title: "Filter",
+                }}
+              />
+            </Stack>
+          </FavoritesContextProvider>
         </SearchFilterContextProvider>
       </QueryProvider>
     </ThemeProvider>

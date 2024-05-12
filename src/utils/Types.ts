@@ -55,3 +55,20 @@ export type CachedRecipes = {
   _links: Object;
   hits: Hits[];
 };
+
+export type RecipeListItemProp = {
+  item: {
+    recipe: {
+      label: string;
+      image: string;
+      source: string;
+      calories: number;
+    };
+    _links: {
+      self: {
+        title: string;
+        href: string;
+      };
+    };
+  };
+};

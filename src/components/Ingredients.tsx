@@ -14,9 +14,10 @@ const Ingredients = ({ recipe }: Hits) => {
             <Text
               style={styles.buttons}
               onPress={() => {
-                if (yieldCount > 1) setYieldCount(yieldCount - 1);
+                setYieldCount(yieldCount - 1);
               }}
               suppressHighlighting={true}
+              disabled={yieldCount === 1}
             >
               -
             </Text>
@@ -24,9 +25,10 @@ const Ingredients = ({ recipe }: Hits) => {
             <Text
               style={styles.buttons}
               onPress={() => {
-                if (yieldCount < 1000) setYieldCount(yieldCount + 1);
+                setYieldCount(yieldCount + 1);
               }}
               suppressHighlighting={true}
+              disabled={yieldCount === 999}
             >
               +
             </Text>
@@ -34,8 +36,8 @@ const Ingredients = ({ recipe }: Hits) => {
         </View>
       </View>
       <View style={styles.ingredientsContainer}>
-        {recipe.ingredients.map((item) => (
-          <View style={styles.ingredientItemContainer} key={item.foodId}>
+        {recipe.ingredients.map((item, index) => (
+          <View style={styles.ingredientItemContainer} key={index}>
             <Text style={styles.ingredientText}>
               {(item.weight * (yieldCount / recipe.yield)).toFixed(2)}g
             </Text>
