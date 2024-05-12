@@ -18,14 +18,16 @@ export interface TotalNutrients {
   PROCNT: Nutrient;
 }
 
+export type Recipe = {
+  label: string;
+  image: string;
+  source: string;
+  calories: number;
+  totalNutrients: TotalNutrients;
+};
+
 export type Hits = {
-  recipe: {
-    label: string;
-    image: string;
-    source: string;
-    calories: number;
-    totalNutrients: TotalNutrients;
-  };
+  recipe: Recipe;
   _links: {
     self: {
       title: string;
