@@ -1,10 +1,15 @@
 import { StyleSheet } from "react-native";
 import { Text, View } from "@/src/components/Themed";
+import { useGroceries } from "@/src/providers/GroceriesContextProvider";
 
 export default function Groceries() {
+  const groceries = useGroceries().groceries;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Groceries</Text>
+      {groceries.map((item) => (
+        <Text style={styles.title}>{item.food}</Text>
+      ))}
     </View>
   );
 }
@@ -12,8 +17,6 @@ export default function Groceries() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
   title: {
     fontSize: 20,

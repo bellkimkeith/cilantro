@@ -1,9 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { Hits } from "../utils/Types";
+import { useGroceries } from "../providers/GroceriesContextProvider";
 
 const Ingredients = ({ recipe }: Hits) => {
   const [yieldCount, setYieldCount] = useState(recipe.yield);
+  const { addItem } = useGroceries();
+
+  const addIngredients = () => {
+    addItem(recipe, yieldCount / recipe.yield);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -45,6 +52,13 @@ const Ingredients = ({ recipe }: Hits) => {
           </View>
         ))}
       </View>
+      <Pressable style={styles.addButton} onPress={addIngredients}>
+        {({ pressed }) => (
+          <Text style={[styles.addButtonText, { opacity: pressed ? 0.5 : 1 }]}>
+            Add to groceries
+          </Text>
+        )}
+      </Pressable>
     </View>
   );
 };
@@ -54,7 +68,6 @@ export default Ingredients;
 const styles = StyleSheet.create({
   container: {
     padding: 24,
-    backgroundColor: "#eee",
     gap: 10,
   },
   headerContainer: {
@@ -98,5 +111,18 @@ const styles = StyleSheet.create({
   },
   ingredientsContainer: {
     gap: 4,
+  },
+  addButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#eee",
+    marginVertical: 10,
+    paddingVertical: 14,
+    marginHorizontal: 20,
+    borderRadius: 40,
+  },
+  addButtonText: {
+    fontSize: 18,
+    fontWeight: "500",
   },
 });

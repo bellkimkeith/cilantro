@@ -16,6 +16,7 @@ import SearchFilterContextProvider, {
 } from "../providers/SearchFilterContextProvider";
 import { Pressable, Text } from "react-native";
 import FavoritesContextProvider from "../providers/FavoritesContextProvider";
+import GroceriesContextProvider from "../providers/GroceriesContextProvider";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -61,18 +62,20 @@ function RootLayoutNav() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <QueryProvider>
         <SearchFilterContextProvider>
-          <FavoritesContextProvider>
-            <Stack>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen
-                name="filter"
-                options={{
-                  presentation: "modal",
-                  title: "Filter",
-                }}
-              />
-            </Stack>
-          </FavoritesContextProvider>
+          <GroceriesContextProvider>
+            <FavoritesContextProvider>
+              <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen
+                  name="filter"
+                  options={{
+                    presentation: "modal",
+                    title: "Filter",
+                  }}
+                />
+              </Stack>
+            </FavoritesContextProvider>
+          </GroceriesContextProvider>
         </SearchFilterContextProvider>
       </QueryProvider>
     </ThemeProvider>
