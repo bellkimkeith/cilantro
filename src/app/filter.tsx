@@ -14,13 +14,29 @@ import { useParams } from "../providers/SearchFilterContextProvider";
 import { router } from "expo-router";
 
 const Filter = () => {
-  const [selectedDiet, setSelectedDiet] = useState<string | undefined>();
-  const [selectedCuisine, setSelectedCuisine] = useState<string | undefined>();
+  const { mutateAsync: searchWithFilter, isPending } =
+    useRecipesByKeywordWithFilter();
+  const { parameters, updateParameters } = useParams();
   const cuisineTypes: RadioButtonProps[] = useMemo(
     () => Filters.cuisineType,
     []
   );
   const dietTypes: RadioButtonProps[] = useMemo(() => Filters.diet, []);
+  const [selectedDiet, setSelectedDiet] = useState<string | undefined>(
+    parameters.dietFilter &&
+      (
+        Filters.diet.findIndex((diet) => diet.value === parameters.dietFilter) +
+        1
+      ).toString()
+  );
+  const [selectedCuisine, setSelectedCuisine] = useState<string | undefined>(
+    parameters.cuisineFilter &&
+      (
+        Filters.cuisineType.findIndex(
+          (cuisine) => cuisine.value === parameters.cuisineFilter
+        ) + 1
+      ).toString()
+  );
   const SECTIONS = [
     {
       title: "Diet",
@@ -52,10 +68,6 @@ const Filter = () => {
     },
   ];
 
-  const { mutateAsync: searchWithFilter, isPending } =
-    useRecipesByKeywordWithFilter();
-  const { parameters } = useParams();
-
   return (
     <View style={styles.container}>
       <SectionList
@@ -66,12 +78,20 @@ const Filter = () => {
         renderSectionHeader={({ section: { title } }) => (
           <Text style={styles.header}>{title}</Text>
         )}
-        contentContainerStyle={{ paddingHorizontal: 10 }}
+        contentContainerStyle={{ paddingHorizontal: 10, paddingVertical: 5 }}
       />
       <Pressable
         disabled={!selectedDiet && !selectedCuisine}
         style={styles.button}
         onPress={async () => {
+          updateParameters({
+            ...parameters,
+            dietFilter:
+              selectedDiet && dietTypes[Number(selectedDiet) - 1].value,
+            cuisineFilter:
+              selectedCuisine &&
+              cuisineTypes[Number(selectedCuisine) - 1].value,
+          });
           await searchWithFilter({
             ...parameters,
             dietFilter:
