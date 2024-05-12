@@ -46,14 +46,14 @@ const SearchBar = ({ handleSubmit }: SearchBarProps) => {
               suppressHighlighting={true}
             />
             <Badge
-              value={filtersCount - 1}
+              value={filtersCount}
               status="error"
               containerStyle={{
                 position: "absolute",
                 top: -5,
                 right: -5,
                 display:
-                  parameters.searchText && filtersCount > 1 ? "flex" : "none",
+                  parameters.searchText && filtersCount === 1 ? "none" : "flex",
               }}
             />
           </Pressable>

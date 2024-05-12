@@ -4,6 +4,7 @@ import { Stack, useLocalSearchParams } from "expo-router";
 import { useCachedRecipes } from "@/src/api/recipes";
 import { CachedRecipes } from "@/src/utils/Types";
 import NutrientDetails from "@/src/components/NutrientDetails";
+import Ingredients from "@/src/components/Ingredients";
 
 const Details = () => {
   const { label } = useLocalSearchParams();
@@ -38,6 +39,10 @@ const Details = () => {
           style={styles.image}
         />
         <NutrientDetails
+          recipe={currentRecipe.recipe}
+          _links={currentRecipe._links}
+        />
+        <Ingredients
           recipe={currentRecipe.recipe}
           _links={currentRecipe._links}
         />

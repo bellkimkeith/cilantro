@@ -5,7 +5,7 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Hits } from "../utils/Types";
 
-const NutrientDetails = ({ recipe, _links }: Hits) => {
+const NutrientDetails = ({ recipe }: Hits) => {
   return (
     <View style={styles.detailsContainer}>
       <View style={styles.overViewDetailsContainer}>

@@ -5,18 +5,28 @@ export type SearchParameters = {
   timeFilter: string | undefined;
 };
 
-export interface Nutrient {
+export type Nutrient = {
   label: string;
   quantity: number;
   unit: string;
-}
+};
+export type Ingredient = {
+  text: string;
+  quantity: number;
+  measure: string | null;
+  food: string;
+  weight: number;
+  foodCategory: string;
+  foodId: string;
+  image: string;
+};
 
-export interface TotalNutrients {
+export type TotalNutrients = {
   ENERC_KCAL: Nutrient;
   FAT: Nutrient;
   FIBTG: Nutrient;
   PROCNT: Nutrient;
-}
+};
 
 export type Recipe = {
   label: string;
@@ -24,6 +34,8 @@ export type Recipe = {
   source: string;
   calories: number;
   totalNutrients: TotalNutrients;
+  yield: number;
+  ingredients: Ingredient[];
 };
 
 export type Hits = {
@@ -41,5 +53,5 @@ export type CachedRecipes = {
   to: number;
   count: number;
   _links: Object;
-  hits: Array<Hits>;
+  hits: Hits[];
 };

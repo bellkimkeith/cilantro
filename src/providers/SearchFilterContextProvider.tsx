@@ -35,6 +35,8 @@ export default function SearchFilterContextProvider({
   });
   const filtersCount = useMemo(() => {
     let count = Object.values(parameters).filter((item) => item).length;
+    console.log(count);
+
     return count;
   }, [parameters]);
 

@@ -58,8 +58,6 @@ export const useRecipesByKeywordWithFilter = () => {
         time !== undefined ? time : ""
       }`;
 
-      console.log(parameters);
-
       try {
         const response = await fetch(
           `${Edamam.baseUrl}&random=true${parameters}`
