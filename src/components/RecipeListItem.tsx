@@ -11,12 +11,21 @@ type RecipeListItemProp = {
       source: string;
       calories: number;
     };
+    _links: {
+      self: {
+        title: string;
+        href: string;
+      };
+    };
   };
 };
 
 const RecipeListItem = memo(({ item }: RecipeListItemProp) => {
+  // const segments = useSegments<["(tabs)", "main", "[label]"]>();
+  const formattedText = item.recipe.label.replace(/[^a-zA-Z]+/g, " ").trim();
+
   return (
-    <Link href={"/"} asChild onPress={() => {}}>
+    <Link href={`/(tabs)/main/${formattedText}`} asChild onPress={() => {}}>
       <Pressable>
         {({ pressed }) => (
           <View style={[styles.container, { opacity: pressed ? 0.8 : 1 }]}>

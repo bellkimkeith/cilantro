@@ -1,9 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Edamam } from "../edamam";
-import { SearchParameters } from "@/src/utils/Types";
-
-// api parameter reference
-// q=chicken&diet=high-protein&cuisineType=Kosher&time=30
+import { CachedRecipes, SearchParameters } from "@/src/utils/Types";
 
 // for get requests
 export const useInitialRecipes = () => {
@@ -78,4 +75,9 @@ export const useRecipesByKeywordWithFilter = () => {
       queryClient.setQueryData(["recipes"], data);
     },
   });
+};
+
+export const useCachedRecipes = (): CachedRecipes | undefined => {
+  const queryClient = useQueryClient();
+  return queryClient.getQueryData(["recipes"]);
 };

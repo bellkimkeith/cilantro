@@ -27,13 +27,15 @@ export default function TabLayout() {
         headerShown: useClientOnlyValue(false, true),
       }}
     >
+      <Tabs.Screen name="index" options={{ href: null }} />
       <Tabs.Screen
-        name="index"
+        name="main"
         options={{
-          title: "Cilantro",
+          title: "Home",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="bowl-food" color={color} />
           ),
+          headerShown: false,
         }}
       />
       <Tabs.Screen
