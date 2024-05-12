@@ -1,9 +1,16 @@
-import { PropsWithChildren, createContext, useContext, useState } from "react";
+import {
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import { SearchParameters } from "../utils/Types";
 
 type SearchFilterData = {
   parameters: SearchParameters;
   updateParameters: (newParams: SearchParameters) => void;
+  filtersCount: number;
 };
 
 const SearchFilterContext = createContext<SearchFilterData>({
@@ -14,6 +21,7 @@ const SearchFilterContext = createContext<SearchFilterData>({
     timeFilter: "",
   },
   updateParameters: () => {},
+  filtersCount: 0,
 });
 
 export default function SearchFilterContextProvider({
@@ -25,13 +33,19 @@ export default function SearchFilterContextProvider({
     cuisineFilter: "",
     timeFilter: "",
   });
+  const filtersCount = useMemo(() => {
+    let count = Object.values(parameters).filter((item) => item).length;
+    return count;
+  }, [parameters]);
 
   const updateParameters = (newParams: SearchParameters) => {
     setParameters(newParams);
   };
 
   return (
-    <SearchFilterContext.Provider value={{ parameters, updateParameters }}>
+    <SearchFilterContext.Provider
+      value={{ parameters, updateParameters, filtersCount }}
+    >
       {children}
     </SearchFilterContext.Provider>
   );

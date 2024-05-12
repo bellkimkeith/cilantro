@@ -2,6 +2,8 @@ import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { Link } from "expo-router";
+import { Badge } from "@rneui/base";
+import { useParams } from "../providers/SearchFilterContextProvider";
 
 type SearchBarProps = {
   handleSubmit: (text: string) => void;
@@ -9,6 +11,7 @@ type SearchBarProps = {
 
 const SearchBar = ({ handleSubmit }: SearchBarProps) => {
   const [searchText, setSearchText] = useState("");
+  const { filtersCount, parameters } = useParams();
 
   return (
     <View style={styles.container}>
@@ -41,6 +44,17 @@ const SearchBar = ({ handleSubmit }: SearchBarProps) => {
               size={24}
               color="gray"
               suppressHighlighting={true}
+            />
+            <Badge
+              value={filtersCount - 1}
+              status="error"
+              containerStyle={{
+                position: "absolute",
+                top: -5,
+                right: -5,
+                display:
+                  parameters.searchText && filtersCount > 1 ? "flex" : "none",
+              }}
             />
           </Pressable>
         </Link>
