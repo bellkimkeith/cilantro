@@ -52,10 +52,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#fff",
+    backgroundColor: "#E0FBE2",
   },
   searchResults: {
     flex: 1,
     gap: 5,
+    backgroundColor: "#E0FBE2",
   },
 });
