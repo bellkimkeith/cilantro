@@ -7,10 +7,17 @@ import { useParams } from "../providers/SearchFilterContextProvider";
 
 type SearchBarProps = {
   handleSubmit: (text: string) => void;
+  isMain: boolean;
+  setSearchText: React.Dispatch<React.SetStateAction<string>>;
+  searchText: string;
 };
 
-const SearchBar = ({ handleSubmit }: SearchBarProps) => {
-  const [searchText, setSearchText] = useState("");
+const SearchBar = ({
+  handleSubmit,
+  isMain,
+  setSearchText,
+  searchText,
+}: SearchBarProps) => {
   const { filtersCount, parameters } = useParams();
 
   return (
@@ -36,30 +43,32 @@ const SearchBar = ({ handleSubmit }: SearchBarProps) => {
           clearButtonMode="always"
         />
       </View>
-      <View>
-        <Link href="/filter" asChild>
-          <Pressable>
-            <FontAwesome6
-              name="filter"
-              size={24}
-              color="gray"
-              suppressHighlighting={true}
-            />
-            <Badge
-              value={
-                parameters.searchText !== "" ? filtersCount - 1 : filtersCount
-              }
-              status="error"
-              containerStyle={{
-                position: "absolute",
-                top: -5,
-                right: -5,
-                display: filtersCount > 0 ? "flex" : "none",
-              }}
-            />
-          </Pressable>
-        </Link>
-      </View>
+      {isMain && (
+        <View>
+          <Link href="/filter" asChild>
+            <Pressable>
+              <FontAwesome6
+                name="filter"
+                size={24}
+                color="gray"
+                suppressHighlighting={true}
+              />
+              <Badge
+                value={
+                  parameters.searchText !== "" ? filtersCount - 1 : filtersCount
+                }
+                status="error"
+                containerStyle={{
+                  position: "absolute",
+                  top: -5,
+                  right: -5,
+                  display: filtersCount > 0 ? "flex" : "none",
+                }}
+              />
+            </Pressable>
+          </Link>
+        </View>
+      )}
     </View>
   );
 };

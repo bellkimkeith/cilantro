@@ -22,6 +22,7 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
   const favorites = useFavorites().favorites;
   const groceries = useGroceries().groceries;
+  const uncheckedItems = groceries.filter((item) => !item.checked).length;
 
   return (
     <Tabs
@@ -72,13 +73,13 @@ export default function TabLayout() {
             <>
               <TabBarIcon name="list-check" color={color} />
               <Badge
-                value={groceries.length}
+                value={uncheckedItems}
                 status="error"
                 containerStyle={{
                   position: "absolute",
                   top: 2,
                   right: 42,
-                  display: groceries.length > 0 ? "flex" : "none",
+                  display: uncheckedItems > 0 ? "flex" : "none",
                 }}
               />
             </>

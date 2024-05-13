@@ -10,12 +10,14 @@ type GroceriesType = {
   groceries: Ingredient[];
   addItem: (data: Recipe, multiplier: number) => void;
   removeItem: (id: string) => void;
+  toggleCheck: (id: string) => void;
 };
 
 const GroceriesContext = createContext<GroceriesType>({
   groceries: [],
   addItem: () => {},
   removeItem: () => {},
+  toggleCheck: () => {},
 });
 
 const GroceriesContextProvider = ({ children }: PropsWithChildren) => {
@@ -24,15 +26,17 @@ const GroceriesContextProvider = ({ children }: PropsWithChildren) => {
   const addItem = (data: Recipe, multiplier: number) => {
     const newGroceries = data.ingredients.map((item) => {
       const GroceryExists = groceries.find(
-        (groceryItem) => groceryItem.foodId === item.foodId
+        (groceryItem) =>
+          groceryItem.foodId === item.foodId || groceryItem.food === item.food
       );
       if (GroceryExists) {
         return {
           ...GroceryExists,
           weight: GroceryExists.weight + item.weight * multiplier,
+          checked: false,
         };
       } else {
-        return item;
+        return { ...item, checked: false };
       }
     });
     setGroceries(newGroceries);
@@ -42,13 +46,22 @@ const GroceriesContextProvider = ({ children }: PropsWithChildren) => {
     setGroceries([]);
   };
 
+  const toggleCheck = (id: string) => {
+    const updatedGroceries = groceries.map((item) =>
+      item.foodId !== id ? item : { ...item, checked: !item.checked }
+    );
+    setGroceries(updatedGroceries);
+  };
+
   const removeItem = (id: string) => {
     const filteredGroceries = groceries.filter((item) => item.foodId !== id);
     setGroceries(filteredGroceries);
   };
 
   return (
-    <GroceriesContext.Provider value={{ groceries, addItem, removeItem }}>
+    <GroceriesContext.Provider
+      value={{ groceries, addItem, removeItem, toggleCheck }}
+    >
       {children}
     </GroceriesContext.Provider>
   );

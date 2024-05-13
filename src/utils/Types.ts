@@ -19,6 +19,7 @@ export type Ingredient = {
   foodCategory: string;
   foodId: string;
   image: string;
+  checked: boolean;
 };
 
 export type TotalNutrients = {

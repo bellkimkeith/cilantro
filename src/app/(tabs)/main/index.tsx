@@ -7,6 +7,7 @@ import {
   useRecipesByKeywordWithFilter,
 } from "@/src/api/recipes";
 import { useParams } from "@/src/providers/SearchFilterContextProvider";
+import { useState } from "react";
 
 export default function Main() {
   const { mutate: searchRecipe, isPending: isPendingSearch } =
@@ -14,6 +15,7 @@ export default function Main() {
   const { parameters, updateParameters } = useParams();
   const { mutate: searchRecipeWithFilter, isPending: isPendingWithFilter } =
     useRecipesByKeywordWithFilter();
+  const [searchText, setSearchText] = useState("");
   const handleSubmit = (text: string) => {
     if (text) {
       const formattedText = text.replace(/[^a-zA-Z]+/g, " ").trim();
@@ -32,7 +34,12 @@ export default function Main() {
 
   return (
     <View style={styles.container}>
-      <SearchBar handleSubmit={handleSubmit} />
+      <SearchBar
+        handleSubmit={handleSubmit}
+        isMain={true}
+        searchText={searchText}
+        setSearchText={setSearchText}
+      />
       <View style={styles.searchResults}>
         {(isPendingSearch || isPendingWithFilter) && <ActivityIndicator />}
         <RecipesList />
