@@ -5,19 +5,25 @@ import { useCachedRecipes } from "@/src/api/recipes";
 import { CachedRecipes } from "@/src/utils/Types";
 import NutrientDetails from "@/src/components/NutrientDetails";
 import Ingredients from "@/src/components/Ingredients";
+import { useFavorites } from "@/src/providers/FavoritesContextProvider";
 
 const Details = () => {
   const { label } = useLocalSearchParams();
   const recipes: CachedRecipes | undefined = useCachedRecipes();
+  const favorites = useFavorites().favorites;
   const currentRecipe =
-    recipes &&
-    recipes.hits.find(
+    (recipes &&
+      recipes.hits.find(
+        (item) => item.recipe.label.replace(/[^a-zA-Z]+/g, " ").trim() === label
+      )) ||
+    favorites.find(
       (item) => item.recipe.label.replace(/[^a-zA-Z]+/g, " ").trim() === label
     );
 
   if (!currentRecipe) {
     return (
-      <View>
+      <View style={styles.emptyContainer}>
+        <Stack.Screen options={{ title: "", headerBackTitleVisible: false }} />
         <Text>No details for this recipe</Text>
       </View>
     );
@@ -60,5 +66,10 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 250,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
