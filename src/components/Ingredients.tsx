@@ -16,7 +16,7 @@ const Ingredients = ({ recipe }: Hits) => {
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Ingredients</Text>
         <View style={styles.yieldCounterContainer}>
-          <Text style={styles.subText}>Yield</Text>
+          <Text style={styles.subText}>Servings</Text>
           <View style={styles.yieldCounterDetails}>
             <Text
               style={styles.buttons}
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 10,
-    borderColor: "#777",
+    borderColor: "#555",
     alignItems: "center",
   },
   subText: {
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   ingredientItemContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    borderBottomColor: "#777",
+    borderBottomColor: "#555",
     borderBottomWidth: 0.3,
     paddingBottom: 2,
   },
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   addButton: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#eee",
+    backgroundColor: "#75A47F",
     marginVertical: 10,
     paddingVertical: 14,
     marginHorizontal: 20,

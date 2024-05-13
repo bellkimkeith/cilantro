@@ -132,7 +132,9 @@ const Filter = () => {
         keyExtractor={(index) => index}
         renderItem={({ section: { renderItem } }) => <>{renderItem}</>}
         renderSectionHeader={({ section: { title } }) => (
-          <Text style={styles.header}>{title}</Text>
+          <View style={styles.headerContainer}>
+            <Text style={styles.header}>{title}</Text>
+          </View>
         )}
         contentContainerStyle={{ paddingHorizontal: 10, paddingVertical: 5 }}
       />
@@ -189,19 +191,22 @@ export default Filter;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#E0FBE2",
   },
   header: {
     fontSize: 24,
-    backgroundColor: "#fff",
     fontWeight: "500",
-    paddingBottom: 12,
+  },
+  headerContainer: {
+    paddingVertical: 8,
+    paddingHorizontal: 8,
+    backgroundColor: "#E0FBE2",
   },
   button: {
     alignItems: "center",
     paddingBottom: 28,
     paddingTop: 10,
-    backgroundColor: "#eee",
+    backgroundColor: "#75A47F",
   },
   buttonText: {
     fontSize: 18,

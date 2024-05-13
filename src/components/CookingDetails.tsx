@@ -23,7 +23,7 @@ export default CookingDetails;
 const styles = StyleSheet.create({
   container: {
     padding: 24,
-    backgroundColor: "#eee",
+    backgroundColor: "#ACE1AF",
     flexDirection: "row",
     justifyContent: "space-between",
   },

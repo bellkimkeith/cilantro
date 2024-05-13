@@ -24,7 +24,7 @@ const RecipeListItem = memo(({ item }: RecipeListItemProp) => {
                   {item.recipe.source}
                 </Text>
                 <Text style={styles.detailsSubText}>
-                  <FontAwesome5 name="fire-alt" size={16} color="#777" />{" "}
+                  <FontAwesome5 name="fire-alt" size={16} color="#E72929" />{" "}
                   {item.recipe.calories.toFixed(0)} kcal
                 </Text>
               </View>
@@ -41,7 +41,7 @@ export default RecipeListItem;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#eee",
+    backgroundColor: "#ACE1AF",
     borderRadius: 20,
     shadowRadius: 2,
     shadowColor: "black",
@@ -67,6 +67,6 @@ const styles = StyleSheet.create({
   },
   detailsSubText: {
     fontSize: 18,
-    color: "#777",
+    color: "#000",
   },
 });

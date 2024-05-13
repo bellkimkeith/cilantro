@@ -23,7 +23,7 @@ const NutrientDetails = ({ recipe, _links }: Hits) => {
           <FontAwesome
             name={isFavorite ? "star" : "star-o"}
             size={28}
-            color="black"
+            color="#1A4D2E"
             onPress={() => {
               if (isFavorite) {
                 removeItem(recipe.label);
@@ -40,7 +40,7 @@ const NutrientDetails = ({ recipe, _links }: Hits) => {
         <View style={styles.nutrientsSubContainer}>
           <View style={styles.nutrientItemContainer}>
             <View style={styles.icon}>
-              <FontAwesome5 name="fire-alt" size={28} color="#777" />
+              <FontAwesome5 name="fire-alt" size={28} color="#E72929" />
             </View>
             <Text
               style={styles.nutrientText}
@@ -53,7 +53,7 @@ const NutrientDetails = ({ recipe, _links }: Hits) => {
               <MaterialCommunityIcons
                 name="food-steak"
                 size={28}
-                color="#777"
+                color="#FF6666"
               />
             </View>
             <Text
@@ -66,7 +66,7 @@ const NutrientDetails = ({ recipe, _links }: Hits) => {
         <View style={styles.nutrientsSubContainer}>
           <View style={styles.nutrientItemContainer}>
             <View style={styles.icon}>
-              <FontAwesome6 name="pizza-slice" size={28} color="#777" />
+              <FontAwesome6 name="pizza-slice" size={28} color="#DEA057" />
             </View>
             <Text
               style={styles.nutrientText}
@@ -76,7 +76,7 @@ const NutrientDetails = ({ recipe, _links }: Hits) => {
           </View>
           <View style={styles.nutrientItemContainer}>
             <View style={styles.icon}>
-              <FontAwesome6 name="wheat-awn" size={28} color="#777" />
+              <FontAwesome6 name="wheat-awn" size={28} color="#B99470" />
             </View>
             <Text
               style={styles.nutrientText}
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   subText: {
     fontSize: 20,
-    color: "#777",
+    color: "#555",
   },
   overViewDetailsContainer: {
     flexDirection: "row",
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   icon: {
-    backgroundColor: "#eee",
+    backgroundColor: "#ACE1AF",
     padding: 10,
     borderRadius: 8,
   },

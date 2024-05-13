@@ -58,8 +58,10 @@ export default function Groceries() {
               uncheckedIcon={"circle-o"}
               checkedIcon={"check-circle-o"}
               checkedColor="green"
+              uncheckedColor="#555"
               onPress={() => toggleCheck(item.parentRecipeLabel, item.foodId)}
               size={28}
+              containerStyle={{ backgroundColor: "#ACE1AF" }}
             />
             <Text
               style={[
@@ -83,12 +85,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: "#E0FBE2",
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#E0FBE2",
   },
   itemText: {
     fontSize: 16,
@@ -100,8 +103,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    borderBottomColor: "#777",
+    borderBottomColor: "#555",
     borderBottomWidth: 0.3,
+    borderRadius: 20,
+    backgroundColor: "#ACE1AF",
   },
   emptyContainer: {
     flex: 1,

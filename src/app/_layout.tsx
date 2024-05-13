@@ -11,10 +11,7 @@ import { useEffect } from "react";
 
 import { useColorScheme } from "@/src/components/useColorScheme";
 import QueryProvider from "@/src/providers/QueryProvider";
-import SearchFilterContextProvider, {
-  useParams,
-} from "../providers/SearchFilterContextProvider";
-import { Pressable, Text } from "react-native";
+import SearchFilterContextProvider from "../providers/SearchFilterContextProvider";
 import FavoritesContextProvider from "../providers/FavoritesContextProvider";
 import GroceriesContextProvider from "../providers/GroceriesContextProvider";
 

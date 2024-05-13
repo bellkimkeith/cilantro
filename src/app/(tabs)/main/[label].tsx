@@ -64,7 +64,7 @@ export default Details;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#E0FBE2",
   },
   image: {
     height: 250,

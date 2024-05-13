@@ -31,25 +31,6 @@ const GroceriesContext = createContext<GroceriesType>({
 const GroceriesContextProvider = ({ children }: PropsWithChildren) => {
   const [groceries, setGroceries] = useState<GroceryItem[] | []>([]);
 
-  // const addItem = (data: Recipe, multiplier: number) => {
-  //   const newGroceries = data.ingredients.map((item) => {
-  //     const GroceryExists = groceries.find(
-  //       (groceryItem) =>
-  //         groceryItem.foodId === item.foodId || groceryItem.food === item.food
-  //     );
-  //     if (GroceryExists) {
-  //       return {
-  //         ...GroceryExists,
-  //         weight: GroceryExists.weight + item.weight * multiplier,
-  //         checked: false,
-  //       };
-  //     } else {
-  //       return { ...item, checked: false };
-  //     }
-  //   });
-  //   setGroceries(newGroceries);
-  // };
-
   const addItem = (recipe: Recipe, multiplier: number) => {
     const groceryItemExists = groceries.find((item) => item.recipe === recipe);
 

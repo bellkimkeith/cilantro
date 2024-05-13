@@ -24,7 +24,7 @@ const SearchBar = ({
       <FontAwesome6
         name="magnifying-glass"
         size={24}
-        color="grey"
+        color="#555"
         onPress={() => {
           handleSubmit(searchText);
         }}
@@ -48,7 +48,7 @@ const SearchBar = ({
             <FontAwesome6
               name="filter"
               size={24}
-              color="gray"
+              color="#555"
               suppressHighlighting={true}
             />
             <Badge
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
-    backgroundColor: "#eee",
+    backgroundColor: "#E0FBE2",
     borderRadius: 20,
     padding: 12,
   },
