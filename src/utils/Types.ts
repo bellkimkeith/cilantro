@@ -20,6 +20,7 @@ export type Ingredient = {
   foodId: string;
   image: string;
   checked: boolean;
+  parentRecipeLabel: string;
 };
 
 export type TotalNutrients = {

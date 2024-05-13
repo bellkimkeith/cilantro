@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet } from "react-native";
+import { Pressable, ScrollView, SectionList, StyleSheet } from "react-native";
 import { Text, View } from "@/src/components/Themed";
 import { useGroceries } from "@/src/providers/GroceriesContextProvider";
 import { CheckBox } from "@rneui/themed";
@@ -18,8 +18,14 @@ export default function Groceries() {
   };
 
   const filteredGroceries = groceries.filter((item) =>
-    item.food.includes(searchText)
+    // item.food.includes(searchText)
+    item.recipe.label.includes(searchText)
   );
+
+  const SECTIONS = groceries.map((item) => ({
+    title: item.recipe.label,
+    data: item.ingredients,
+  }));
 
   if (groceries.length <= 0) {
     return (
@@ -67,28 +73,35 @@ export default function Groceries() {
         searchText={searchText}
         setSearchText={setSearchText}
       />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {filteredGroceries.map((item, index) => (
+      <SectionList
+        sections={SECTIONS}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ gap: 5 }}
+        keyExtractor={(item, index) => item.foodId + index}
+        renderItem={({ item, index }) => (
           <View key={index} style={styles.checkListItem}>
             <CheckBox
               checked={item.checked}
               uncheckedIcon={"circle-o"}
               checkedIcon={"check-circle-o"}
               checkedColor="green"
-              onPress={() => toggleCheck(item.foodId)}
+              onPress={() => toggleCheck(item.parentRecipeLabel, item.foodId)}
               size={28}
             />
             <Text
               style={[
-                styles.title,
+                styles.itemText,
                 { textDecorationLine: item.checked ? "line-through" : "none" },
               ]}
             >
               {`${item.weight.toFixed(2)}g  ${item.food}`}
             </Text>
           </View>
-        ))}
-      </ScrollView>
+        )}
+        renderSectionHeader={({ section: { title } }) => (
+          <Text style={styles.title}>{title}</Text>
+        )}
+      />
     </View>
   );
 }
@@ -99,8 +112,14 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   title: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  itemText: {
+    fontSize: 16,
+    fontWeight: "500",
     flex: 1,
   },
   checkListItem: {

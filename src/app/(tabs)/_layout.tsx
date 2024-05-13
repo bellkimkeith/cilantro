@@ -22,7 +22,9 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
   const favorites = useFavorites().favorites;
   const groceries = useGroceries().groceries;
-  const uncheckedItems = groceries.filter((item) => !item.checked).length;
+  const uncheckedItems = groceries
+    .flatMap((item) => item.ingredients)
+    .filter((item) => !item.checked).length;
 
   return (
     <Tabs
