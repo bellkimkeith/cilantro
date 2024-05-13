@@ -1,26 +1,13 @@
-import { Pressable, ScrollView, SectionList, StyleSheet } from "react-native";
+import { Pressable, SectionList, StyleSheet } from "react-native";
 import { Text, View } from "@/src/components/Themed";
 import { useGroceries } from "@/src/providers/GroceriesContextProvider";
 import { CheckBox } from "@rneui/themed";
-
-import { useState } from "react";
-import SearchBar from "@/src/components/SearchBar";
 import { Stack } from "expo-router";
 
 export default function Groceries() {
   const groceries = useGroceries().groceries;
   const toggleCheck = useGroceries().toggleCheck;
   const resetGroceries = useGroceries().resetGroceries;
-  const [searchText, setSearchText] = useState("");
-
-  const updateSearch = (text: string) => {
-    setSearchText(text);
-  };
-
-  const filteredGroceries = groceries.filter((item) =>
-    // item.food.includes(searchText)
-    item.recipe.label.includes(searchText)
-  );
 
   const SECTIONS = groceries.map((item) => ({
     title: item.recipe.label,
@@ -31,14 +18,6 @@ export default function Groceries() {
     return (
       <View style={styles.emptyContainer}>
         <Text>No groceries added yet</Text>
-      </View>
-    );
-  }
-
-  if (filteredGroceries.length <= 0) {
-    return (
-      <View style={styles.emptyContainer}>
-        <Text>{`No results for ${searchText}`}</Text>
       </View>
     );
   }
@@ -66,12 +45,6 @@ export default function Groceries() {
             </Pressable>
           ),
         }}
-      />
-      <SearchBar
-        handleSubmit={updateSearch}
-        isMain={false}
-        searchText={searchText}
-        setSearchText={setSearchText}
       />
       <SectionList
         sections={SECTIONS}

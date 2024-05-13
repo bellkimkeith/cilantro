@@ -14,7 +14,6 @@ type SearchBarProps = {
 
 const SearchBar = ({
   handleSubmit,
-  isMain,
   setSearchText,
   searchText,
 }: SearchBarProps) => {
@@ -43,36 +42,34 @@ const SearchBar = ({
           clearButtonMode="always"
         />
       </View>
-      {isMain && (
-        <View>
-          <Link href="/filter" asChild>
-            <Pressable>
-              <FontAwesome6
-                name="filter"
-                size={24}
-                color="gray"
-                suppressHighlighting={true}
-              />
-              <Badge
-                value={
-                  parameters.searchText !== "" ? filtersCount - 1 : filtersCount
-                }
-                status="error"
-                containerStyle={{
-                  position: "absolute",
-                  top: -5,
-                  right: -5,
-                  display:
-                    (filtersCount > 0 && parameters.searchText === "") ||
-                    (filtersCount > 1 && parameters.searchText !== "")
-                      ? "flex"
-                      : "none",
-                }}
-              />
-            </Pressable>
-          </Link>
-        </View>
-      )}
+      <View>
+        <Link href="/filter" asChild>
+          <Pressable>
+            <FontAwesome6
+              name="filter"
+              size={24}
+              color="gray"
+              suppressHighlighting={true}
+            />
+            <Badge
+              value={
+                parameters.searchText !== "" ? filtersCount - 1 : filtersCount
+              }
+              status="error"
+              containerStyle={{
+                position: "absolute",
+                top: -5,
+                right: -5,
+                display:
+                  (filtersCount > 0 && parameters.searchText === "") ||
+                  (filtersCount > 1 && parameters.searchText !== "")
+                    ? "flex"
+                    : "none",
+              }}
+            />
+          </Pressable>
+        </Link>
+      </View>
     </View>
   );
 };
