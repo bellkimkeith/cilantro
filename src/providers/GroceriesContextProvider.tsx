@@ -11,6 +11,7 @@ type GroceriesType = {
   addItem: (data: Recipe, multiplier: number) => void;
   removeItem: (id: string) => void;
   toggleCheck: (id: string) => void;
+  resetGroceries: () => void;
 };
 
 const GroceriesContext = createContext<GroceriesType>({
@@ -18,6 +19,7 @@ const GroceriesContext = createContext<GroceriesType>({
   addItem: () => {},
   removeItem: () => {},
   toggleCheck: () => {},
+  resetGroceries: () => {},
 });
 
 const GroceriesContextProvider = ({ children }: PropsWithChildren) => {
@@ -60,7 +62,7 @@ const GroceriesContextProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <GroceriesContext.Provider
-      value={{ groceries, addItem, removeItem, toggleCheck }}
+      value={{ groceries, addItem, removeItem, toggleCheck, resetGroceries }}
     >
       {children}
     </GroceriesContext.Provider>

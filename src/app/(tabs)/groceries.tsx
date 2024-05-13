@@ -1,14 +1,16 @@
-import { ScrollView, StyleSheet } from "react-native";
+import { Pressable, ScrollView, StyleSheet } from "react-native";
 import { Text, View } from "@/src/components/Themed";
 import { useGroceries } from "@/src/providers/GroceriesContextProvider";
 import { CheckBox } from "@rneui/themed";
 
 import { useState } from "react";
 import SearchBar from "@/src/components/SearchBar";
+import { Stack } from "expo-router";
 
 export default function Groceries() {
   const groceries = useGroceries().groceries;
   const toggleCheck = useGroceries().toggleCheck;
+  const resetGroceries = useGroceries().resetGroceries;
   const [searchText, setSearchText] = useState("");
 
   const updateSearch = (text: string) => {
@@ -37,6 +39,31 @@ export default function Groceries() {
 
   return (
     <View style={styles.container}>
+      {groceries.length > 0 && (
+        <Stack.Screen
+          options={{
+            headerRight: () => (
+              <Pressable
+                onPress={() => {
+                  resetGroceries();
+                }}
+                style={{ paddingRight: 10 }}
+              >
+                {({ pressed }) => (
+                  <Text
+                    style={{
+                      opacity: pressed ? 0.5 : 1,
+                    }}
+                  >
+                    Clear
+                  </Text>
+                )}
+              </Pressable>
+            ),
+          }}
+        />
+      )}
+
       <SearchBar
         handleSubmit={updateSearch}
         isMain={false}
@@ -83,6 +110,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
     borderBottomColor: "#777",
     borderBottomWidth: 0.3,
   },

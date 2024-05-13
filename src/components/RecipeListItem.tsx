@@ -20,7 +20,9 @@ const RecipeListItem = memo(({ item }: RecipeListItemProp) => {
                 </Text>
               </View>
               <View style={styles.detailsSubView}>
-                <Text style={styles.detailsSubText}>{item.recipe.source}</Text>
+                <Text style={[styles.detailsSubText, { flex: 1 }]}>
+                  {item.recipe.source}
+                </Text>
                 <Text style={styles.detailsSubText}>
                   <FontAwesome5 name="fire-alt" size={16} color="#777" />{" "}
                   {item.recipe.calories.toFixed(0)} kcal
