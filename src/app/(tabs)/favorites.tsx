@@ -9,7 +9,7 @@ export default function Favorites() {
   if (!favorites.length)
     return (
       <View style={styles.emptyView}>
-        <Text>No Favorites</Text>
+        <Text>No favorites added yet</Text>
       </View>
     );
   return (

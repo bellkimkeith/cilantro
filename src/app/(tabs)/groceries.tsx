@@ -19,6 +19,22 @@ export default function Groceries() {
     item.food.includes(searchText)
   );
 
+  if (groceries.length <= 0) {
+    return (
+      <View style={styles.emptyContainer}>
+        <Text>No groceries added yet</Text>
+      </View>
+    );
+  }
+
+  if (filteredGroceries.length <= 0) {
+    return (
+      <View style={styles.emptyContainer}>
+        <Text>{`No results for ${searchText}`}</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <SearchBar
@@ -65,5 +81,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomColor: "#777",
     borderBottomWidth: 0.3,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
