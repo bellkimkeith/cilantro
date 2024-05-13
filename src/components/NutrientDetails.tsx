@@ -5,6 +5,7 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Hits } from "../utils/Types";
 import { useFavorites } from "../providers/FavoritesContextProvider";
+import ShareButton from "./ShareButton";
 
 const NutrientDetails = ({ recipe, _links }: Hits) => {
   const { favorites, addItem, removeItem } = useFavorites();
@@ -18,19 +19,22 @@ const NutrientDetails = ({ recipe, _links }: Hits) => {
           <Text style={styles.headerText}>{recipe.label}</Text>
           <Text style={styles.subText}>{recipe.source}</Text>
         </View>
-        <FontAwesome
-          name={isFavorite ? "star" : "star-o"}
-          size={28}
-          color="black"
-          onPress={() => {
-            if (isFavorite) {
-              removeItem(recipe.label);
-            } else {
-              addItem({ recipe, _links });
-            }
-          }}
-          suppressHighlighting={true}
-        />
+        <View style={styles.headerButtonsContainer}>
+          <FontAwesome
+            name={isFavorite ? "star" : "star-o"}
+            size={28}
+            color="black"
+            onPress={() => {
+              if (isFavorite) {
+                removeItem(recipe.label);
+              } else {
+                addItem({ recipe, _links });
+              }
+            }}
+            suppressHighlighting={true}
+          />
+          <ShareButton message={recipe.shareAs} />
+        </View>
       </View>
       <View style={styles.nutrientsContainer}>
         <View style={styles.nutrientsSubContainer}>
@@ -132,5 +136,10 @@ const styles = StyleSheet.create({
   nutrientText: {
     fontWeight: "500",
     fontSize: 16,
+  },
+  headerButtonsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
 });

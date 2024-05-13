@@ -38,6 +38,7 @@ export type Recipe = {
   yield: number;
   ingredients: Ingredient[];
   totalTime: number;
+  shareAs: string;
 };
 
 export type Hits = {
