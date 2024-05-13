@@ -37,6 +37,7 @@ export type Recipe = {
   totalNutrients: TotalNutrients;
   yield: number;
   ingredients: Ingredient[];
+  totalTime: number;
 };
 
 export type Hits = {

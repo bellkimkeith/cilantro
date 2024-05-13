@@ -39,31 +39,28 @@ export default function Groceries() {
 
   return (
     <View style={styles.container}>
-      {groceries.length > 0 && (
-        <Stack.Screen
-          options={{
-            headerRight: () => (
-              <Pressable
-                onPress={() => {
-                  resetGroceries();
-                }}
-                style={{ paddingRight: 10 }}
-              >
-                {({ pressed }) => (
-                  <Text
-                    style={{
-                      opacity: pressed ? 0.5 : 1,
-                    }}
-                  >
-                    Clear
-                  </Text>
-                )}
-              </Pressable>
-            ),
-          }}
-        />
-      )}
-
+      <Stack.Screen
+        options={{
+          headerRight: () => (
+            <Pressable
+              onPress={() => {
+                resetGroceries();
+              }}
+              style={{ paddingRight: 10 }}
+            >
+              {({ pressed }) => (
+                <Text
+                  style={{
+                    opacity: pressed ? 0.5 : 1,
+                  }}
+                >
+                  Clear
+                </Text>
+              )}
+            </Pressable>
+          ),
+        }}
+      />
       <SearchBar
         handleSubmit={updateSearch}
         isMain={false}

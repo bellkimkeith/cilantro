@@ -6,6 +6,7 @@ import { CachedRecipes } from "@/src/utils/Types";
 import NutrientDetails from "@/src/components/NutrientDetails";
 import Ingredients from "@/src/components/Ingredients";
 import { useFavorites } from "@/src/providers/FavoritesContextProvider";
+import CookingDetails from "@/src/components/CookingDetails";
 
 const Details = () => {
   const { label } = useLocalSearchParams();
@@ -48,6 +49,7 @@ const Details = () => {
           recipe={currentRecipe.recipe}
           _links={currentRecipe._links}
         />
+        <CookingDetails time={currentRecipe.recipe.totalTime} />
         <Ingredients
           recipe={currentRecipe.recipe}
           _links={currentRecipe._links}
