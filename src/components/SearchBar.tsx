@@ -1,5 +1,4 @@
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
-import React, { useState } from "react";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import { Badge } from "@rneui/base";

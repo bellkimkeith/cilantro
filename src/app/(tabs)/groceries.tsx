@@ -1,4 +1,4 @@
-import { Pressable, SectionList, StyleSheet } from "react-native";
+import { Platform, Pressable, SectionList, StyleSheet } from "react-native";
 import { Text, View } from "@/src/components/Themed";
 import { useGroceries } from "@/src/providers/GroceriesContextProvider";
 import { CheckBox } from "@rneui/themed";
@@ -84,7 +84,7 @@ export default function Groceries() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: Platform.OS === "android" ? 14 : 16,
     backgroundColor: "#E0FBE2",
   },
   title: {
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     borderBottomColor: "#000",
     borderWidth: 0.2,
-    borderRadius: 20,
+    borderRadius: Platform.OS === "android" ? 8 : 20,
     backgroundColor: "#ACE1AF",
   },
   emptyContainer: {

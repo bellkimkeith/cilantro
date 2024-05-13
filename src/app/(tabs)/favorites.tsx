@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text } from "react-native";
+import { FlatList, Platform, StyleSheet, Text } from "react-native";
 import { View } from "@/src/components/Themed";
 import { useFavorites } from "@/src/providers/FavoritesContextProvider";
 import RecipeListItem from "@/src/components/RecipeListItem";
@@ -29,7 +29,7 @@ export default function Favorites() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: Platform.OS === "android" ? 14 : 16,
     backgroundColor: "#E0FBE2",
   },
   emptyView: {

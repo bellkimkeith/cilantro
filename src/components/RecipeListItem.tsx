@@ -1,4 +1,11 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React, { memo } from "react";
 import { Link } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -42,16 +49,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ACE1AF",
-    borderRadius: 20,
+    borderRadius: Platform.OS === "android" ? 8 : 20,
     shadowRadius: 2,
     shadowColor: "black",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     borderWidth: 0.2,
+    elevation: Platform.OS === "android" ? 4 : 0,
   },
   image: {
     height: 200,
-    borderRadius: 20,
+    borderRadius: Platform.OS === "android" ? 8 : 20,
   },
   details: {
     padding: 16,

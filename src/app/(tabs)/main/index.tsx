@@ -1,4 +1,4 @@
-import { ActivityIndicator, StyleSheet } from "react-native";
+import { ActivityIndicator, Platform, StyleSheet } from "react-native";
 import { View } from "@/src/components/Themed";
 import SearchBar from "@/src/components/SearchBar";
 import RecipesList from "@/src/components/RecipeList";
@@ -51,7 +51,7 @@ export default function Main() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: Platform.OS === "android" ? 14 : 16,
     backgroundColor: "#E0FBE2",
   },
   searchResults: {
