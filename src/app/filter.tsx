@@ -107,7 +107,6 @@ const Filter = () => {
                 setSelectedCuisine(undefined);
                 setSelectedDiet(undefined);
                 setSelectedTime(undefined);
-                console.log("clear");
               }}
             >
               {({ pressed }) => (

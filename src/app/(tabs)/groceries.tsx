@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { Text, View } from "@/src/components/Themed";
 import { useGroceries } from "@/src/providers/GroceriesContextProvider";
 import { CheckBox } from "@rneui/themed";
@@ -43,26 +43,28 @@ export default function Groceries() {
         searchText={searchText}
         setSearchText={setSearchText}
       />
-      {filteredGroceries.map((item, index) => (
-        <View key={index} style={styles.checkListItem}>
-          <CheckBox
-            checked={item.checked}
-            uncheckedIcon={"circle-o"}
-            checkedIcon={"check-circle-o"}
-            checkedColor="green"
-            onPress={() => toggleCheck(item.foodId)}
-            size={28}
-          />
-          <Text
-            style={[
-              styles.title,
-              { textDecorationLine: item.checked ? "line-through" : "none" },
-            ]}
-          >
-            {item.food}
-          </Text>
-        </View>
-      ))}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {filteredGroceries.map((item, index) => (
+          <View key={index} style={styles.checkListItem}>
+            <CheckBox
+              checked={item.checked}
+              uncheckedIcon={"circle-o"}
+              checkedIcon={"check-circle-o"}
+              checkedColor="green"
+              onPress={() => toggleCheck(item.foodId)}
+              size={28}
+            />
+            <Text
+              style={[
+                styles.title,
+                { textDecorationLine: item.checked ? "line-through" : "none" },
+              ]}
+            >
+              {`${item.weight.toFixed(2)}g  ${item.food}`}
+            </Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -73,10 +75,12 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   title: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
+    flex: 1,
   },
   checkListItem: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     borderBottomColor: "#777",

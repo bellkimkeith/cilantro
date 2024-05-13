@@ -104,10 +104,14 @@ const styles = StyleSheet.create({
   ingredientItemContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    borderBottomColor: "#777",
+    borderBottomWidth: 0.3,
+    paddingBottom: 2,
   },
   ingredientText: {
     fontSize: 18,
     textAlign: "left",
+    flex: 1,
   },
   ingredientsContainer: {
     gap: 4,
