@@ -6,11 +6,6 @@ export default {
       value: "american",
     },
     {
-      id: "2",
-      label: "American",
-      value: "american",
-    },
-    {
       id: "3",
       label: "Asian",
       value: "asian",

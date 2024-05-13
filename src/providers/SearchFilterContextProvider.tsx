@@ -40,7 +40,6 @@ export default function SearchFilterContextProvider({
 
   const updateParameters = (newParams: SearchParameters) => {
     setParameters(newParams);
-    console.log("update");
   };
 
   return (

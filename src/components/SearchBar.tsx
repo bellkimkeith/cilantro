@@ -62,7 +62,11 @@ const SearchBar = ({
                   position: "absolute",
                   top: -5,
                   right: -5,
-                  display: filtersCount > 0 ? "flex" : "none",
+                  display:
+                    (filtersCount > 0 && parameters.searchText === "") ||
+                    (filtersCount > 1 && parameters.searchText !== "")
+                      ? "flex"
+                      : "none",
                 }}
               />
             </Pressable>
