@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E0FBE2",
     borderRadius: 20,
     padding: 12,
+    borderWidth: 0.2,
   },
   search: {
     flex: 1,

@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     marginHorizontal: 20,
     borderRadius: 40,
+    borderWidth: 0.2,
   },
   addButtonText: {
     fontSize: 18,
