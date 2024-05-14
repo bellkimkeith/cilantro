@@ -12,6 +12,7 @@ import Filters from "../constants/Filters";
 import { useRecipesByKeywordWithFilter } from "../api/recipes";
 import { useParams } from "../providers/SearchFilterContextProvider";
 import { Stack, router } from "expo-router";
+import Colors from "../constants/Colors";
 
 const Filter = () => {
   const { mutateAsync: searchWithFilter, isPending } =
@@ -124,6 +125,7 @@ const Filter = () => {
               )}
             </Pressable>
           ),
+          headerTintColor: Colors.light.tint,
         }}
       />
       <SectionList

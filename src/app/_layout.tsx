@@ -14,6 +14,7 @@ import QueryProvider from "@/src/providers/QueryProvider";
 import SearchFilterContextProvider from "../providers/SearchFilterContextProvider";
 import FavoritesContextProvider from "../providers/FavoritesContextProvider";
 import GroceriesContextProvider from "../providers/GroceriesContextProvider";
+import Colors from "../constants/Colors";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -62,7 +63,12 @@ function RootLayoutNav() {
           <GroceriesContextProvider>
             <FavoritesContextProvider>
               <Stack>
-                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen
+                  name="(tabs)"
+                  options={{
+                    headerShown: false,
+                  }}
+                />
                 <Stack.Screen
                   name="filter"
                   options={{
