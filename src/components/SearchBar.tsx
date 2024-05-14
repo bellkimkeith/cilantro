@@ -3,6 +3,7 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import { Badge } from "@rneui/base";
 import { useParams } from "../providers/SearchFilterContextProvider";
+import Colors from "../constants/Colors";
 
 type SearchBarProps = {
   handleSubmit: (text: string) => void;
@@ -23,7 +24,7 @@ const SearchBar = ({
       <FontAwesome6
         name="magnifying-glass"
         size={24}
-        color="#555"
+        color={Colors.light.tint}
         onPress={() => {
           handleSubmit(searchText);
         }}
@@ -47,7 +48,7 @@ const SearchBar = ({
             <FontAwesome6
               name="filter"
               size={24}
-              color="#555"
+              color={Colors.light.tint}
               suppressHighlighting={true}
             />
             <Badge

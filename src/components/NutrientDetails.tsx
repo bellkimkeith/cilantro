@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   subText: {
     fontSize: 20,
-    color: "#555",
+    color: "#1A4D2E",
   },
   overViewDetailsContainer: {
     flexDirection: "row",

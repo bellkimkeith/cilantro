@@ -28,7 +28,7 @@ const ShareButton = ({ message }: ShareButtonProps) => {
   return (
     <View>
       <Text onPress={onShare} suppressHighlighting={true}>
-        <FontAwesome6 name="share-nodes" size={24} color="black" />
+        <FontAwesome6 name="share-nodes" size={24} color="#1A4D2E" />
       </Text>
     </View>
   );
